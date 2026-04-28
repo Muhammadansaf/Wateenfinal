@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+  <script src="https://unpkg.com/lucide@latest"></script>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Wateen</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+/* RESET */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Nunito', sans-serif; /* Playful Body Font */
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:#f6f6f6;
+  color:#1c3d2b;
+  overflow-x:hidden;
+}
+
+img{
+  max-width:100%;
+  display:block;
+}
+
+a, button{
+  -webkit-tap-highlight-color: transparent;
+  transition: all 0.3s ease; 
+}
+
+/* NAVBAR */
+.navbar{
+  position:fixed;
+  top:20px;
+  left:50%;
+  transform:translateX(-50%);
+  width:80%;
+  padding:12px 30px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:40px;
+  background:rgba(80, 100, 72, 0.9); 
+  border-radius:50px;
+  backdrop-filter:blur(12px);
+  z-index:1000;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+}
+
+.navbar a{
+  color:white;
+  text-decoration:none;
+  font-weight:700;
+  letter-spacing: 0.5px; 
+  font-size: 15px;
+}
+
+.navbar a:hover {
+  color: #f1e4b3; 
+}
+
+/* Updated Logo CSS */
+.logo{
+  height: 27px; 
+  width: auto;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+/* HERO */
+.hero{
+  height:100vh;
+  background:#506448; 
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  color:white;
+  padding:20px;
+}
+
+.hero h1{
+  font-family:'Fredoka', sans-serif; /* Playful Heading Font */
+  font-size:75px; 
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.hero p{
+  margin-top:20px;
+  opacity:0.9;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.btn{
+  margin-top:30px;
+  padding:14px 28px;
+  background:white;
+  color:#506448; 
+  border-radius:30px;
+  text-decoration:none;
+  font-weight: 800;
+  font-size: 16px;
+}
+
+.btn:hover {
+  background: #f1e4b3;
+  transform: translateY(-4px); /* Extra bouncy hover for playful vibe */
+}
+
+/* MARQUEE */
+.marquee{
+  background:#f1e4b3;
+  padding:12px;
+  white-space:nowrap;
+  overflow:hidden;
+}
+
+.marquee span{
+  display:inline-block;
+  padding-left:100%;
+  animation:scroll 15s linear infinite;
+  color: #506448; 
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+
+@keyframes scroll{
+  from{transform:translateX(0)}
+  to{transform:translateX(-100%)}
+}
+
+/* SECTION */
+.section{
+  padding:80px 10%;
+  text-align:center;
+}
+
+.section h2{
+  font-family:'Fredoka', sans-serif; /* Playful Heading Font */
+  font-size:48px;
+  font-weight: 600;
+  margin-bottom:50px;
+  color: #506448; 
+}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:30px;
+}
+
+.card img{
+  width:100%;
+  border-radius:20px;
+  transition: transform 0.4s ease;
+}
+
+.card img:hover {
+  transform: scale(1.03) rotate(1deg); /* Slight playful tilt on hover */
+}
+
+/* ABOUT */
+.about{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:50px;
+  align-items:center;
+}
+
+.about img{
+  width:100%;
+  border-radius:25px;
+}
+
+/* REVIEW SECTION */
+.review-section{
+  padding:100px 10%;
+  text-align:center;
+}
+
+.review-title{
+  font-family:'Fredoka', sans-serif; /* Playful Heading Font */
+  font-size:52px;
+  font-weight: 600;
+  margin-bottom:60px;
+  color: #506448;
+}
+
+.review-container{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:30px;
+  align-items:center;
+}
+
+.review-card{
+  background:#f1e4b3;
+  padding:35px;
+  border-radius:25px;
+  text-align:left;
+  box-shadow:0 10px 25px rgba(0,0,0,0.05);
+  transition:0.3s;
+  color: #506448;
+}
+
+.review-card:hover{
+  transform:translateY(-10px);
+  box-shadow:0 15px 30px rgba(0,0,0,0.1);
+}
+
+.review-card .quote{
+  font-family: 'Fredoka', sans-serif;
+  font-size:65px;
+  margin-bottom:5px;
+  color: #506448;
+  line-height: 0.8;
+}
+
+.review-card p{
+  font-size:17px;
+  line-height:1.6;
+  font-weight:600;
+}
+
+.review-card span{
+  display:block;
+  margin-top:20px;
+  font-size:15px;
+  opacity:0.8;
+  font-weight: 800;
+}
+
+.review-image img{
+  width:100%;
+  border-radius:25px;
+  height:100%;
+  object-fit:cover;
+}
+
+/* FOOTER */
+.premium-footer{
+  background:#506448; 
+  color:white;
+  padding-top:20px;
+}
+
+.footer-marquee{
+  background:#e7d9a8;
+  color:#506448; 
+  overflow:hidden;
+  white-space:nowrap;
+  padding:12px 0;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.footer-marquee span{
+  display:inline-block;
+  padding-left:100%;
+  animation:scroll 15s linear infinite;
+}
+
+.footer-container{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:40px;
+  padding:60px 10%;
+}
+
+.footer-col h3 {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 30px;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.footer-col h4{
+  font-family: 'Fredoka', sans-serif;
+  font-size: 24px;
+  margin-bottom:15px;
+  font-weight: 600;
+}
+
+.footer-col a,
+.footer-col p{
+  display:block;
+  margin-bottom:10px;
+  text-decoration:none;
+  color:white;
+  font-size:15px;
+  font-weight: 600;
+  opacity: 0.8;
+}
+
+.footer-col a:hover {
+  opacity: 1;
+  color: #f1e4b3;
+}
+
+/* Footer Logo */
+.footer-logo{
+  height: 45px;
+  width: auto;
+  margin-bottom: 15px;
+}
+
+/* Social Icons */
+.socials{
+  display:flex;
+  gap:15px;
+}
+
+.socials a{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  background:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color: #506448;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.socials a:hover {
+  background: #f1e4b3;
+  transform: translateY(-4px) rotate(5deg); /* Playful hover */
+  color: #506448;
+}
+
+.socials svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor; 
+}
+
+.footer-line{
+  width:80%;
+  margin:20px auto;
+  height:2px;
+  background:rgba(255,255,255,0.2);
+  border-radius: 5px;
+}
+
+.footer-bottom{
+  display:flex;
+  justify-content:space-between;
+  padding:20px 10%;
+  font-size:14px;
+  font-weight: 600;
+  opacity: 0.8;
+}
+
+/* ================= MOBILE PERFECT ================= */
+@media (max-width: 900px){
+
+  .navbar{
+    width:92%;
+    padding:10px 15px;
+    gap:15px;
+    justify-content:space-between;
+  }
+
+  .navbar a{
+    font-size:12px;
+  }
+
+  .logo{
+    height: 22px; 
+  }
+
+  .hero{
+    height:90vh;
+    padding:0 15px;
+  }
+
+  .hero h1{
+    font-size:48px;
+    line-height:1.1;
+  }
+
+  .hero p{
+    font-size:16px;
+  }
+
+  .btn{
+    padding:12px 24px;
+    font-size:14px;
+  }
+
+  .section{
+    padding:50px 20px;
+  }
+
+  .section h2{
+    font-size:38px;
+    margin-bottom:25px;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+    gap:15px;
+  }
+
+  .about{
+    grid-template-columns:1fr;
+    gap:25px;
+  }
+
+  .review-section{
+    padding:60px 20px;
+  }
+
+  .review-title{
+    font-size:38px;
+    margin-bottom:30px;
+  }
+
+  .review-container{
+    grid-template-columns:1fr;
+    gap:20px;
+  }
+
+  .review-card{
+    padding:25px;
+    border-radius:20px;
+  }
+
+  .review-image img{
+    height:220px;
+    border-radius:20px;
+  }
+
+  .footer-container{
+    grid-template-columns:1fr;
+    gap:25px;
+    padding:40px 20px;
+    text-align:center;
+  }
+
+  .footer-col h3, .footer-col h4 {
+    margin-bottom: 10px;
+  }
+
+  .footer-logo {
+    margin: 0 auto 15px auto;
+    height: 35px; 
+  }
+
+  .footer-bottom{
+    flex-direction:column;
+    gap:8px;
+    padding:15px 20px;
+    font-size:13px;
+  }
+
+  .socials{
+    justify-content:center;
+  }
+}
+
+/* ===== EXACT HERO UI ===== */
+
+.hero-exact{
+  display:grid;
+  grid-template-columns:1.05fr 1fr;
+  gap:70px;
+  padding:120px 10%;
+  align-items:center;
+  background:#f6f6f6;
+}
+
+/* LEFT TEXT */
+
+.hero-text h1{
+  font-family:'Fredoka', sans-serif; /* Playful Heading Font */
+  font-size:75px;
+  font-weight: 600;
+  line-height:1.05;
+  color:#506448; 
+  margin-bottom:25px;
+}
+
+.hero-text p{
+  font-size:17px;
+  line-height:1.8;
+  font-weight: 600;
+  max-width:520px;
+  color:#617858; 
+  margin-bottom:50px;
+}
+
+/* FEATURES GRID */
+
+.features-grid{
+  display:grid;
+  grid-template-columns:repeat(2, 1fr); /* FORCE 2 columns */
+  gap:20px;
+}
+
+.feature-item{
+  padding:28px 20px;
+  border:none;
+  border-radius:18px;
+  background:white;
+  box-shadow:0 8px 20px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+}
+
+.feature-item:hover {
+  background: white; 
+}
+
+.circle{
+  width:55px;
+  height:55px;
+  background:#506448;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:0 auto 15px auto;
+}
+
+.circle svg{
+  width:24px;
+  height:24px;
+  stroke:white;
+  stroke-width:2;
+}
+
+.feature-item{
+  display:flex;
+  flex-direction:column;
+  align-items:center; 
+  justify-content:center;
+  text-align:center;
+
+  padding:28px 20px;
+  border:none;
+  border-radius:18px;
+  background:white;
+  box-shadow:0 8px 20px rgba(0,0,0,0.05);
+
+  transition: all 0.3s ease;
+}
+
+/* RIGHT IMAGES */
+
+.hero-images{
+  display:grid;
+  grid-template-columns:1fr 0.85fr;
+  gap:22px;
+}
+
+.main-img img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:35px; /* Softer, rounder edges */
+}
+
+.side-imgs{
+  display:grid;
+  gap:22px;
+}
+
+.side-imgs img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:25px;
+}
+
+/* IMAGE HEIGHT CONTROL (IMPORTANT FOR MATCH) */
+
+.main-img{
+  height:520px;
+}
+
+.side-imgs img{
+  height:249px;
+}
+
+/* ===== MOBILE EXACT ===== */
+
+@media(max-width:900px){
+
+.hero-exact{
+  grid-template-columns:1fr; /* ✅ single column */
+  gap:40px;
+  padding:70px 20px;
+}
+}
+
+  .hero-text h1{
+    font-size:46px;
+  }
+
+  .hero-text p{
+    font-size:15px;
+    margin-bottom:30px;
+  }
+
+  /* ===== EXACT ICON GRID (PIXEL PERFECT) ===== */
+  .features-grid{
+  grid-template-columns:1fr 1fr; /* keep 2x2 */
+  gap:12px;
+  margin-top:30px;
+}
+
+.feature-item{
+  display:flex;
+  flex-direction:column;
+  align-items:center; 
+  justify-content:center;
+  text-align:center;
+  padding:20px 15px;
+  border-right:2px solid #d9d9d9;
+  border-bottom:2px solid #d9d9d9;
+  min-height:150px; 
+}
+
+/* ICON (exact look) */
+.circle{
+  width:55px;
+  height:55px;
+  background:#506448;
+  border-radius:50%;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  margin-bottom:15px;
+}
+
+.circle svg{
+  width:24px;
+  height:24px;
+  stroke:white;
+  stroke-width:2;
+  display:block;
+}
+
+.feature-item h4{
+  font-family:'Fredoka', sans-serif;
+  font-size:22px;
+  line-height:1.3;
+  color:#506448;
+}
+
+/* TEXT */
+.feature-item h4{
+  font-family:'Fredoka', sans-serif;
+  font-size:20px;
+  line-height:1.2;
+  color:#506448; 
+}
+
+  .hero-images{
+    grid-template-columns:1fr;
+  }
+
+  .main-img{
+    height:280px;
+  }
+
+  .side-imgs{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .side-imgs img{
+    height:130px;
+  }
+
+</style>
+</head>
+
+<body>
+
+  <div class="navbar">
+
+    <div class="nav-left">
+      <a href="#home">Home</a>
+      <a href="#menu">Menu</a>
+    </div>
+  
+    <img src="wateen-logo.png" class="logo" alt="Wateen Logo">
+  
+    <div class="nav-right">
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+  
+  </div>
+
+<section class="hero">
+  <h1>Authentic Kerala Flavors<br>in Qatar</h1>
+  <p>From kadak chai to Malabar snacks, Arabic delights & Chinese favorites — all in one place</p>
+  <a href="https://maps.app.goo.gl/EkJg4b2hYFcEkKA78?g_st=ic" class="btn">Our Location</a>
+</section>
+
+<div class="marquee">
+  Kerala Taste • Arabic Bites • Chinese Favorites • Premium Chai • Fresh Snacks • Kerala Taste • Arabic Bites • Chinese Favorites • Premium Chai • Fresh Snacks •Kerala Taste • Arabic Bites • Chinese Favorites • Premium Chai • Fresh Snacks •
+</div>
+
+<section class="hero-exact">
+
+  <div class="hero-text">
+    <h1>Where Kerala<br>Meets Qatar</h1>
+
+    <p>
+      At Wateen, we bring the soul of Kerala to Qatar — serving authentic Malabar dishes, special teas, fresh snacks, Arabic specialties, and Chinese favorites in a premium cafe-style experience.
+    </p>
+
+    <div class="features-grid">
+
+      <div class="feature-item">
+        <div class="circle"><i data-lucide="coffee"></i></div>
+        <h4>Signature<br>Special Tea</h4>
+      </div>
+    
+      <div class="feature-item">
+        <div class="circle"><i data-lucide="heart"></i></div>
+        <h4>Premium<br>Cafe Ambience</h4>
+      </div>
+    
+      <div class="feature-item">
+        <div class="circle"><i data-lucide="smile"></i></div>
+        <h4>Authentic<br>Kerala Taste</h4>
+      </div>
+    
+      <div class="feature-item">
+        <div class="circle"><i data-lucide="home"></i></div>
+        <h4>Arabic & Chinese<br>Fusion Menu</h4>
+      </div>
+    
+    </div>
+  </div>  <!-- CLOSE hero-text -->
+  <div class="hero-images">
+
+    <div class="main-img">
+      <img src="https://images.unsplash.com/photo-1600891964092-4316c288032e" alt="Chai Image 1">
+    </div>
+
+    <div class="side-imgs">
+      <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348" alt="Chai Image 2">
+      <img src="https://images.unsplash.com/photo-1544148103-0773bf10d330" alt="Chai Image 3">
+    </div>
+
+  </div>
+
+</section>
+
+<section id="menu" class="section">
+  <h2>Explore Our Signature Dishes</h2>
+  <div class="grid">
+    <div class="card"><img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d" alt="Menu Item 1"></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1550547660-d9450f859349" alt="Menu Item 3"></div>
+  </div>
+</section>
+
+<section class="review-section">
+  <h2 class="review-title">What People Love About Us</h2>
+  <div class="review-container">
+
+    <div class="review-card">
+      <div class="quote">“</div>
+      <p>Best Kerala food spot in Qatar! The tea and snacks are next level.</p>
+      <span>Nithin</span>
+    </div>
+
+    <div class="review-image">
+      <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9" alt="Happy Customer">
+    </div>
+
+    <div class="review-card">
+      <div class="quote">“</div>
+      <p>Perfect mix of Arabic, Chinese, and Kerala dishes — loved everything here!</p>
+      <span>Ajmal</span>
+    </div>
+
+  </div>
+</section>
+
+<footer class="premium-footer">
+
+  <div class="footer-marquee">
+    <span> Kerala Taste • Arabic Bites • Chinese Favorites • Premium Chai • Fresh Snacks •  </span>
+  </div>
+
+  <div class="footer-container">
+
+    <div class="footer-col">
+      <img src="wateen-logo.png" class="footer-logo" alt="Wateen Logo">
+      <p>+91 97478 02020</p>
+      <p>info@wateen.com</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Main</h4>
+      <a href="#">Home</a>
+      <a href="#">Locations</a>
+      <a href="#">About</a>
+    </div>
+
+    <div class="footer-col">
+      <p>Kerala Food</p>
+      <p>Special Tea & Snacks</p>
+      <p>Chinese & Arabic</p>
+      <p>Cafe & Beverages</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Follow</h4>
+      <div class="socials">
+        <a href="#" aria-label="Instagram">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+          </svg>
+        </a>
+        <a href="#" aria-label="Facebook">
+          <svg viewBox="0 0 24 24">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+        </a>
+      </div>
+      <p>Authentic Kerala Restaurant in Qatar</p>
+    </div>
+
+  </div>
+
+  <div class="footer-line"></div>
+
+  <div class="footer-bottom">
+    <p>2026 © Wateen</p>
+    <p>Made by You</p>
+  </div>
+
+</footer>
+<script>
+  lucide.createIcons();
+</script>
+</body>
+</html>
